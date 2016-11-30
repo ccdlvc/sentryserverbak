@@ -87,7 +87,7 @@ const GroupSidebar = React.createClass({
           result = this.subscriptionReasons[reason];
         }
       } else {
-        result = tct('You\'re receiving updates because you are [link:subscribed to workflow notifications] for this project.', {
+        result = tct('You\'re receiving updates because you are [link:subscribed to workflow notifications] for this IUpdate project.', {
           link: <a href="/account/settings/notifications/" />,
         });
       }
