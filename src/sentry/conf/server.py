@@ -290,7 +290,8 @@ try:
     from django.core.urlresolvers import reverse_lazy
 except ImportError:
     LOGIN_REDIRECT_URL = '/login-redirect/'
-    LOGIN_URL = '/auth/login/'
+    #LOGIN_URL = '/auth/login/'
+    LOGIN_URL = '/login/'
 else:
     LOGIN_REDIRECT_URL = reverse_lazy('sentry-login-redirect')
     LOGIN_URL = reverse_lazy('sentry-login')
