@@ -289,8 +289,8 @@ CSRF_COOKIE_NAME = 'sc'
 try:
     from django.core.urlresolvers import reverse_lazy
 except ImportError:
-    LOGIN_REDIRECT_URL = '/login-redirect/'
-    LOGIN_URL = '/auth/login/'
+    LOGIN_REDIRECT_URL = 'http://iupdate.io'
+    LOGIN_URL = 'http://login.iupdate.io/auth/login/'
 else:
     LOGIN_REDIRECT_URL = reverse_lazy('sentry-login-redirect')
     LOGIN_URL = reverse_lazy('sentry-login')
@@ -325,6 +325,7 @@ SOCIAL_AUTH_AUTHENTICATION_BACKENDS = (
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 SESSION_COOKIE_NAME = "iupdateiosid"
 SESSION_COOKIE_DOMAIN = ".iupdate.io"
+SESSION_SAVE_EVERY_REQUEST = True
 SESSION_SERIALIZER = "django.contrib.sessions.serializers.PickleSerializer"
 
 GOOGLE_OAUTH2_CLIENT_ID = ''
