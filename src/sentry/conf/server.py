@@ -262,6 +262,7 @@ INSTALLED_APPS = (
     'social_auth',
     'south',
     'sudo',
+    'redis_sessions_fork',
 )
 
 STATIC_ROOT = os.path.realpath(os.path.join(PROJECT_ROOT, 'static'))
@@ -322,11 +323,30 @@ SOCIAL_AUTH_AUTHENTICATION_BACKENDS = (
     'social_auth.backends.asana.AsanaBackend',
 )
 
-SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+#SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+SESSION_ENGINE = 'redis_sessions_fork.session'
 SESSION_COOKIE_NAME = "iupdateiosid"
 SESSION_COOKIE_DOMAIN = ".iupdate.io"
 SESSION_SAVE_EVERY_REQUEST = True
-SESSION_SERIALIZER = "django.contrib.sessions.serializers.PickleSerializer"
+#SESSION_SERIALIZER = "django.contrib.sessions.serializers.PickleSerializer"
+SESSION_SERIALIZER = 'redis_sessions_fork.serializers.UjsonSerializer'
+SESSION_REDIS_JSON_ENCODING = 'utf8'
+
+SESSION_REDIS_HOST = '127.0.0.1'
+SESSION_REDIS_PORT = 6380
+SESSION_REDIS_DB = 0
+SESSION_REDIS_PASSWORD = None
+SESSION_REDIS_PREFIX = None
+
+# if you prefer domain socket connection
+# you can just add this line instead of SESSION_REDIS_HOST and SESSION_REDIS_PORT
+#SESSION_REDIS_UNIX_DOMAIN_SOCKET_PATH = '/var/run/redis/redis.sock'
+
+# you can also use redis from url
+SESSION_REDIS_URL = 'redis://127.0.0.1:6380/0'
+
+# also available setup connection via redis.ConnectionPool like
+#SESSION_REDIS_CONNECTION_POOL = 'random.app.redis_connection_pool'
 
 GOOGLE_OAUTH2_CLIENT_ID = ''
 GOOGLE_OAUTH2_CLIENT_SECRET = ''
