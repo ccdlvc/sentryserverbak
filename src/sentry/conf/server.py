@@ -324,7 +324,7 @@ SOCIAL_AUTH_AUTHENTICATION_BACKENDS = (
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 SESSION_COOKIE_NAME = "iupdateiosid"
-SESSION_COOKIE_NAME = "*.iupdate.io"
+SESSION_COOKIE_DOMAIN = "*.iupdate.io"
 SESSION_SERIALIZER = "django.contrib.sessions.serializers.PickleSerializer"
 
 GOOGLE_OAUTH2_CLIENT_ID = ''
