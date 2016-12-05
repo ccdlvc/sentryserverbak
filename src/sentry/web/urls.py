@@ -222,7 +222,7 @@ urlpatterns += patterns(
         name='sentry-auth-sso'),
     #url(r'^auth/logout/$', AuthLogoutView.as_view(),
     #    name='sentry-logout'),
-    url(r'http://login.iupdate.io/auth/logout/$', AuthLogoutView.as_view(),
+    url('http://login.iupdate.io/auth/logout/$', AuthLogoutView.as_view(),
         name='sentry-logout'),
     url(r'^auth/reactivate/$', ReactivateAccountView.as_view(),
         name='sentry-reactivate-account'),
