@@ -15,7 +15,8 @@
         {% block modal_header_signout %}
           {% if request.user.is_authenticated %}
             <div class="pull-right">
-              <a href="{% url 'sentry-logout' %}">{% trans "Sign out" %}</a>
+              <!--<a href="{% url 'sentry-logout' %}">{% trans "Sign out" %}</a>-->
+              <a href="http://login.iupdate.io/auth/logout">{% trans "Sign out" %}</a>
             </div>
           {% endif %}
         {% endblock %}

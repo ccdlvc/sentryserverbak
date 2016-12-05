@@ -130,7 +130,10 @@
               {% if request.is_superuser %}
                 <li><a href="{% url 'sentry-admin-overview' %}">{% trans "Admin" %}</a></li>
               {% endif %}
-              <li><a href="{% url 'sentry-logout' %}">{% trans "Sign out" %}</a></li>
+              <li>
+                <!--<a href="{% url 'sentry-logout' %}">{% trans "Sign out" %}</a>-->
+                <a href="http://login.iupdate.io/auth/logout">{% trans "Sign out" %}</a>
+              </li>
             </ul>
           </div>
         </div>
