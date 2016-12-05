@@ -331,7 +331,7 @@ SOCIAL_AUTH_AUTHENTICATION_BACKENDS = (
 SESSION_ENGINE = 'redis_sessions_fork.session'
 SESSION_COOKIE_NAME = "iupdateiosid"
 SESSION_COOKIE_DOMAIN = ".iupdate.io"
-#SESSION_SAVE_EVERY_REQUEST = True
+SESSION_SAVE_EVERY_REQUEST = True
 #SESSION_SERIALIZER = "django.contrib.sessions.serializers.PickleSerializer"
 SESSION_SERIALIZER = 'redis_sessions_fork.serializers.UjsonSerializer'
 SESSION_REDIS_JSON_ENCODING = 'utf8'
@@ -710,7 +710,7 @@ SENTRY_FEATURES = {
     'projects:global-events': False,
     'projects:quotas': True,
     'projects:plugins': True,
-    'projects:dsym': False,
+    'projects:dsym': True,
     'workflow:release-emails': False,
 }
 
