@@ -628,7 +628,7 @@ LOGGING = {
         'logfile': {
             'level' : 'DEBUG',
             'class' : 'logging.handlers.RotatingFileHandler',
-            'filename' : os.path.join(PROJECT_ROOT, 'logs/djangoproject.log'),
+            'filename' : '/home/srv/projects/report.iupdate.io/logs/djangoproject.log',
             'maxBytes' : 50000,
             'backupCount': 2,
             'formatter': 'verbose',
