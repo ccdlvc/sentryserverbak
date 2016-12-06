@@ -112,10 +112,7 @@ def initiate_login(request, next_url=None):
 
 def get_login_redirect(request, default=None):
     if default is None:
-        if request.GET["_next"] is not None:
-            default = request.GET["_next"]
-        else:
-            default = get_login_url()
+        default = get_login_url()
 
     # If there is a pending 2fa authentication bound to the session then
     # we need to go to the 2fa dialog.
@@ -134,6 +131,9 @@ def get_login_redirect(request, default=None):
 
     if not is_valid_redirect(login_url, host=request.get_host()):
         login_url = default
+
+    if request.GET["_next"] is not None:
+        login_url = request.GET["_next"]
 
     return login_url
 
