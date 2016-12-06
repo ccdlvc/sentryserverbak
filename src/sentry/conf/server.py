@@ -238,7 +238,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'social_auth.context_processors.social_auth_by_name_backends',
     'social_auth.context_processors.social_auth_backends',
     'social_auth.context_processors.social_auth_by_type_backends',
-    'social_auth.context_processors.social_auth_login_redirect'
+    'social_auth.context_processors.social_auth_login_redirect',
+    'sentry.utils.context_processors.login_url_with_redirect',
 )
 
 INSTALLED_APPS = (
@@ -298,10 +299,10 @@ except ImportError:
     LOGIN_REDIRECT_URL = 'http://iupdate.io'
     LOGIN_URL = 'http://login.iupdate.io/auth/login/'
 else:
-    #LOGIN_REDIRECT_URL = reverse_lazy('sentry-login-redirect')
-    #LOGIN_URL = reverse_lazy('sentry-login')
-    LOGIN_REDIRECT_URL = 'http://iupdate.io'
-    LOGIN_URL = 'http://login.iupdate.io/auth/login/'
+    LOGIN_REDIRECT_URL = reverse_lazy('sentry-login-redirect')
+    LOGIN_URL = reverse_lazy('sentry-login')
+    #LOGIN_REDIRECT_URL = 'http://iupdate.io'
+    #LOGIN_URL = 'http://login.iupdate.io/auth/login/'
 
 AUTHENTICATION_BACKENDS = (
     'sentry.utils.auth.EmailAuthBackend',
@@ -636,7 +637,8 @@ LOGGING = {
     # based on the overridden level defined above.
     'overridable': ['celery', 'sentry'],
     'loggers': {
-        'django': { # configure all of Django's loggers
+        'django': {
+            # configure all of Django's loggers
             'handlers': ['logfile', 'console'],
             'level': 'INFO', # set to debug to see e.g. database queries
             'propagate': False, # don't propagate further, to avoid duplication
