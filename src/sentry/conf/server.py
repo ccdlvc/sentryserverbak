@@ -21,7 +21,6 @@ import sentry
 
 from datetime import timedelta
 from six.moves.urllib.parse import urlparse
-from .settings import BASE_DIR
 
 gettext_noop = lambda s: s
 
@@ -618,7 +617,7 @@ LOGGING = {
         'logfile': {
             'level':'DEBUG',
             'class':'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/djangoproject.log'),
+            'filename': '/home/srv/projects/report.iupdate.io/logs/djangoproject.log',
             'maxBytes': 50000,
             'backupCount': 2,
             'formatter': 'standard',
