@@ -41,7 +41,7 @@ const UserNav = React.createClass({
         {user.isSuperuser &&
           <MenuItem {...to('/manage/')}>{t('Admin')}</MenuItem>
         }
-        <MenuItem href="/auth/logout/">{t('Sign out')}</MenuItem>
+        <MenuItem href="http://login.iupdate.io/auth/logout/">{t('Sign out')}</MenuItem>
       </DropdownLink>
     );
   }
