@@ -588,8 +588,6 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
     'formatters': {
-        # see full list of attributes here:
-        # https://docs.python.org/3/library/logging.html#logrecord-attributes
         'verbose': {
             'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
         },
@@ -615,12 +613,12 @@ LOGGING = {
             'class': 'raven.contrib.django.handlers.SentryHandler',
         },
         'logfile': {
-            'level':'DEBUG',
-            'class':'logging.handlers.RotatingFileHandler',
-            'filename': '/home/srv/projects/report.iupdate.io/logs/djangoproject.log',
-            'maxBytes': 50000,
+            'level' : 'DEBUG',
+            'class' : 'logging.handlers.RotatingFileHandler',
+            'filename' : '/home/srv/projects/report.iupdate.io/logs/djangoproject.log',
+            'maxBytes' : 50000,
             'backupCount': 2,
-            'formatter': 'standard',
+            'formatter': 'verbose',
         },
     },
     'filters': {
