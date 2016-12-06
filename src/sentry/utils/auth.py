@@ -127,14 +127,14 @@ def get_login_redirect(request, default=None):
 
     login_url = request.session.pop('_next', None)
     if not login_url:
-        if request.GET["_next"] is not None:
+        if '_next' in request.GET or '_next' in request.POST:
             return request.GET["_next"]
         return default
 
     if not is_valid_redirect(login_url, host=request.get_host()):
         login_url = default
 
-    if request.GET["_next"] is not None:
+    if '_next' in request.GET or '_next' in request.POST:
         login_url = request.GET["_next"]
 
     return login_url
