@@ -651,23 +651,20 @@ LOGGING = {
             'level': 'INFO',
         },
         'sentry.errors': {
-            'handlers': ['console'],
+            'handlers': ['logfile', 'console'],
             'propagate': False,
         },
         'sentry.rules': {
-            'handlers': ['console'],
+            'handlers': ['logfile', 'console'],
             'propagate': False,
         },
         'multiprocessing': {
-            'handlers': ['console'],
-            # https://github.com/celery/celery/commit/597a6b1f3359065ff6dbabce7237f86b866313df
-            # This commit has not been rolled into any release and leads to a
-            # large amount of errors when working with postgres.
+            'handlers': ['logfile', 'console'],
             'level': 'CRITICAL',
             'propagate': False,
         },
         'celery.worker.job': {
-            'handlers': ['console'],
+            'handlers': ['logfile', 'console'],
             'propagate': False,
         },
         'static_compiler': {
@@ -675,7 +672,7 @@ LOGGING = {
         },
         'django.request': {
             'level': 'ERROR',
-            'handlers': ['console'],
+            'handlers': ['logfile', 'console'],
             'propagate': False,
         },
         'toronado': {
@@ -685,17 +682,17 @@ LOGGING = {
         },
         'urllib3.connectionpool': {
             'level': 'ERROR',
-            'handlers': ['console'],
+            'handlers': ['logfile', 'console'],
             'propagate': False,
         },
         'boto3': {
             'level': 'WARNING',
-            'handlers': ['console'],
+            'handlers': ['logfile', 'console'],
             'propagate': False,
         },
         'botocore': {
             'level': 'WARNING',
-            'handlers': ['console'],
+            'handlers': ['logfile', 'console'],
             'propagate': False,
         },
     }
