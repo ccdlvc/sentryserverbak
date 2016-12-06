@@ -126,16 +126,21 @@ def get_login_redirect(request, default=None):
         return after_2fa
 
     login_url = request.session.pop('_next', None)
+    _next = request.GET["_next"]
+
     if not login_url:
-        if '_next' in request.GET or '_next' in request.POST:
-            return request.GET["_next"]
-        return default
+        if _next:
+            return _next
+        else:
+            return default
 
     if not is_valid_redirect(login_url, host=request.get_host()):
         login_url = default
 
-    if '_next' in request.GET or '_next' in request.POST:
-        login_url = request.GET["_next"]
+    if _next:
+        return _next
+    else:
+        return login_url
 
     return login_url
 
