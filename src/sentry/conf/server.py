@@ -297,8 +297,10 @@ except ImportError:
     LOGIN_REDIRECT_URL = 'http://iupdate.io'
     LOGIN_URL = 'http://login.iupdate.io/auth/login/'
 else:
-    LOGIN_REDIRECT_URL = reverse_lazy('sentry-login-redirect')
-    LOGIN_URL = reverse_lazy('sentry-login')
+    #LOGIN_REDIRECT_URL = reverse_lazy('sentry-login-redirect')
+    #LOGIN_URL = reverse_lazy('sentry-login')
+    LOGIN_REDIRECT_URL = 'http://iupdate.io'
+    LOGIN_URL = 'http://login.iupdate.io/auth/login/'
 
 AUTHENTICATION_BACKENDS = (
     'sentry.utils.auth.EmailAuthBackend',
