@@ -640,11 +640,9 @@ LOGGING = {
         'django': {
             # configure all of Django's loggers
             'handlers': ['logfile', 'console'],
-            'level': 'INFO', # set to debug to see e.g. database queries
-            'propagate': False, # don't propagate further, to avoid duplication
+            'level': 'INFO',
+            'propagate': False,
         },
-        # root configuration – for all of our own apps
-        # (feel free to do separate treatment for e.g. brokenapp vs. sth else)
         '': {
             'handlers': ['logfile', 'console'],
             'level': 'DEBUG',
