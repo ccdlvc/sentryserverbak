@@ -21,6 +21,7 @@ import sentry
 
 from datetime import timedelta
 from six.moves.urllib.parse import urlparse
+from .settings import BASE_DIR
 
 gettext_noop = lambda s: s
 
@@ -586,17 +587,40 @@ LOGGING = {
     'default_level': 'INFO',
     'version': 1,
     'disable_existing_loggers': True,
+    'formatters': {
+        # see full list of attributes here:
+        # https://docs.python.org/3/library/logging.html#logrecord-attributes
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+        'timestampthread': {
+            'format': "%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s] [%(name)-20.20s]  %(message)s",
+        },
+    },
     'handlers': {
         'null': {
-            'class': 'django.utils.log.NullHandler',
+            'level':'DEBUG',
+            'class':'django.utils.log.NullHandler',
         },
         'console': {
-            'class': 'sentry.logging.handlers.StructLogHandler',
+            'level': 'DEBUG', # DEBUG or higher goes to the console
+            'class': 'logging.StreamHandler',
         },
         'internal': {
             'level': 'ERROR',
             'filters': ['sentry:internal'],
             'class': 'raven.contrib.django.handlers.SentryHandler',
+        },
+        'logfile': {
+            'level':'DEBUG',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/djangoproject.log'),
+            'maxBytes': 50000,
+            'backupCount': 2,
+            'formatter': 'standard',
         },
     },
     'filters': {
@@ -612,6 +636,17 @@ LOGGING = {
     # based on the overridden level defined above.
     'overridable': ['celery', 'sentry'],
     'loggers': {
+        'django': { # configure all of Django's loggers
+            'handlers': ['logfile', 'console'],
+            'level': 'INFO', # set to debug to see e.g. database queries
+            'propagate': False, # don't propagate further, to avoid duplication
+        },
+        # root configuration – for all of our own apps
+        # (feel free to do separate treatment for e.g. brokenapp vs. sth else)
+        '': {
+            'handlers': ['logfile', 'console'],
+            'level': 'DEBUG',
+        },
         'celery': {
             'level': 'WARN',
         },
