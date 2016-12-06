@@ -222,6 +222,19 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'sentry.conf.urls'
 
+TEMPLATES = [{
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': [os.path.join(PROJECT_ROOT, 'templates')],
+    'OPTIONS': {
+        'loaders': [
+            ('django.template.loaders.cached.Loader', [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ]),
+        ],
+    },
+}]
+
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
@@ -615,7 +628,7 @@ LOGGING = {
         'logfile': {
             'level' : 'DEBUG',
             'class' : 'logging.handlers.RotatingFileHandler',
-            'filename' : '/home/srv/projects/report.iupdate.io/logs/djangoproject.log',
+            'filename' : [os.path.join(PROJECT_ROOT, 'logs/djangoproject.log')],
             'maxBytes' : 50000,
             'backupCount': 2,
             'formatter': 'verbose',
