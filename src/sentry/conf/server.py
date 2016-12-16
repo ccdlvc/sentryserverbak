@@ -302,6 +302,7 @@ LOCALE_PATHS = (
 
 CSRF_FAILURE_VIEW = 'sentry.web.frontend.csrf_failure.view'
 CSRF_COOKIE_NAME = 'sc'
+CSRF_COOKIE_DOMAIN = '.iupdate.io'
 
 # Auth configuration
 
