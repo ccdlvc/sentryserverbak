@@ -29,6 +29,8 @@ wget https://bootstrap.pypa.io/ez_setup.py -O - | python
 rm -Rf setuptools*
 
 echo "|*********** CLONE GITHUB SENTRY *************|"
+rm -Rf $HOME_SRV_REPORT_IUPDATE_FOLDER/sentryserver
+
 cd $HOME_BUILD_SCRIPTS_REPORT_IUPDATE_FOLDER
 git clone https://boxstore:huongduong3@github.com/boxstore/sentryserver.git
 mv sentryserver $HOME_SRV_REPORT_IUPDATE_FOLDER
