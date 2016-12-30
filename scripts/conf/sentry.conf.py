@@ -23,7 +23,7 @@ SENTRY_URL_PREFIX = 'http://sentry.iupdate.io'
 
 # You should not change this setting after your database has been created
 # unless you have altered all schemas first
-SENTRY_USE_BIG_INTS = False
+SENTRY_USE_BIG_INTS = True
 
 # If you're expecting any kind of real traffic on Sentry, we highly recommend
 # configuring the CACHES and Redis settings
@@ -49,12 +49,12 @@ DEBUG = True
 #
 #   pip install python-memcached
 #
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': ['127.0.0.1:11211'],
-    }
-}
+#CACHES = {
+#    'default': {
+#        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#        'LOCATION': ['127.0.0.1:11211'],
+#    }
+#}
 
 # A primary cache is required for things such as processing events
 SENTRY_CACHE = 'sentry.cache.redis.RedisCache'
@@ -66,7 +66,7 @@ SENTRY_CACHE = 'sentry.cache.redis.RedisCache'
 # See https://docs.sentry.io/on-premise/server/queue/ for more
 # information on configuring your queue broker and workers. Sentry relies
 # on a Python framework called Celery to manage queues.
-CELERY_ALWAYS_EAGER = False
+#CELERY_ALWAYS_EAGER = False
 BROKER_URL = 'redis://localhost:6379'
 
 ###############
