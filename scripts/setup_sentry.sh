@@ -42,7 +42,7 @@ cd $HOME_SRV_REPORT_IUPDATE_FOLDER/sentryserver
 python setup.py build
 
 echo "|*********** SENTRY INIT CONFIG *************|"
-sentry init $HOME_SRV_REPORT_IUPDATE_CONF_FOLDER/
+#sentry init $HOME_SRV_REPORT_IUPDATE_CONF_FOLDER/
 cp $HOME_BUILD_SCRIPTS_REPORT_IUPDATE_CONF_FOLDER/* $HOME_SRV_REPORT_IUPDATE_CONF_FOLDER/
 
 echo "|*********** SENTRY UPGRADE DATABASE *************|"
