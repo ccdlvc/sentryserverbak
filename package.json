@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/getsentry/sentry.git"
+    "url": "https://github.com/boxstore/sentryserver.git"
   },
   "dependencies": {
     "babel-core": "5.8.38",

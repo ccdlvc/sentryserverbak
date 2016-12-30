@@ -1,0 +1,25 @@
+# Initialize configuration
+sentry init /etc/sentry.conf.py
+patch -p1 /etc/sentry.conf.py < /usr/local/src/sentry/sentry.conf.py.patch
+service redis start
+
+# Setup admin user
+export SENTRY_CONF=/etc/sentry.conf.py
+su sentry -c "/var/sentry/bin/sentry --config=/etc/sentry.conf.py upgrade"
+python -c "from sentry.utils.runner import configure; configure(); from django.db import DEFAULT_DB_ALIAS as database; from sentry.models import User; User.objects.db_manager(database).create_superuser('admin', 'admin@example.com', 'admin')" executable=/bin/bash chdir=/var/sentry
+
+# Run Sentry as a service
+yum -y install supervisor --enablerepo=epel
+cat /usr/local/src/sentry/supervisord_sentry.conf >> /etc/supervisord.conf
+service supervisord start
+/usr/bin/supervisorctl status
+
+# Configure autostart
+chkconfig redis on
+chkconfig mysqld on
+chkconfig supervisord on
+
+# Terminate daemon
+service supervisord stop
+service redis stop
+service mysqld stop
