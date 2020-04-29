@@ -20,7 +20,7 @@
     "history": "1.13.0",
     "ios-device-list": "^1.1.17",
     "jed": "^1.1.0",
-    "jquery": "2.1.4",
+    "jquery": "3.5.0",
     "js-cookie": "2.0.4",
     "json-loader": "0.5.3",
     "less": "2.5.3",
